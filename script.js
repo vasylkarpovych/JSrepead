@@ -1,254 +1,213 @@
 //===============================================================================
-// Замикання // Closure
+// ООП
 // ==============================================================================
 
-// // Приклад
-// function createNewSum(n) {
-//   return function () {
-//     console.log(10 * n);
-//   };
-// }
-// const calc = createNewSum(5);
-// calc();
+// Наприклад, розрахуємо суму кредиту, процедурне програмування:
 
-// ==============================================================================
-// // Приклад ще:
+// const sum = 20000;
+// const month = 12;
+// const paymentToBank = 1000;
 
-// function createNewNumber(n) {
-//   return function (num) {
-//     return n + num;
-//   };
-// }
-// const addFive = createNewNumber(5);
-// console.log(addFive(10));
+// const creditAll = (sum, date, pay) => {
+//   return sum + pay * date;
+// };
 
-// ==============================================================================
-// // Приклад на посиланнях ще:
+// console.log(creditAll(sum, month, paymentToBank));
 
-// function createUrl(domain) {
-//   return function (url) {
-//     return `https://${url}.${domain}`;
-//   };
-// }
-// const comUrl = createUrl("com");
-// const comUa = createUrl("com.ua");
+// ООП програмування:
 
-// console.log(comUrl("google"));
-// console.log(comUrl("fb"));
-// console.log(comUa("rozetka"));
+// const creditAll = {
+//   sum: 20000,
+//   month: 12,
+//   paymentToBank: 1000,
+//   result() {
+//     return this.sum + this.paymentToBank * this.month;
+//   },
+// };
+// console.log(creditAll.result());
 
 //===============================================================================
-// THIS // контекст
-// ==============================================================================
+// Існують 4 парадигми ООП програмування:
+//===============================================================================
+// 1. Інкапсуляція
+// Це властивість системи, яка дозвозяє об'єднати методи і данні, які працюють
+// з цими методами, в один об'єкт та приховати цим деталі від зовнішнього світу.
+//===============================================================================
+// 2. Абстракція
+// Це спосиб виділити виділити спільні характеристике об'єктів, та ігноруєте
+// непотрібні деталі
+//===============================================================================
+// 3. Наслідування
+// Це концепція ООП, яка дозволяє створювати нові класи на основі все існуючих.
+//===============================================================================
+// 4. Поліморфізм
+// Це концепція ООП, яка дозволяє об'єктам реагувати на однаковий метод по-різному
 
-// function hello() {
-//   console.log("Hello", this);
+//===============================================================================
+// Навчимося працювати з класами:
+//===============================================================================
+
+// // той самий банк, утворюємо клас:
+// class Bank {
+//   static type = "Privat";
+//   constructor(option) {
+//     this.sum = option.sum;
+//     this.month = option.month;
+//     this.p = option.p;
+//   }
+//   creditAll() {
+//     return console.log("I am Privat!");
+//     // return this.sum + this.p * this.month;
+//   }
 // }
-// hello();
+// // // а тепер ми видаємо комусь кредит:
+// // const userBank = new Bank({
+// //   sum: 30000,
+// //   month: 5,
+// //   p: 500,
+// // });
 
-// const user = {
-//   name: "Ivan",
-//   city: "Odessa",
-//   sayHello: hello,
-// };
-// user.sayHello();
+// // console.log(userBank);
+// // console.log(userBank.creditAll());
+// // console.log(Bank.type);
 
-// ==============================================================================
-// function abc() {
-//   console.log("В функції");
-//   console.log(this);
-// }
-// abc();
-
-// document.querySelector(".hello").onclick = abc;
-
-// ==============================================================================
-// function changeColor() {
-//   console.log(this);
-//   this.style.background = "green";
-// }
-// document.querySelector(".div").onclick = changeColor;
-
-// ==============================================================================
-// function changeColor() {
-//   this.style.background = "green";
+// class NewBank extends Bank {
+//   constructor(option) {
+//     super(option);
+//     this.card = option.card;
+//   }
+//   creditAll() {
+//     super.creditAll();
+//     return console.log("I am Aval!");
+//   }
 // }
 
-// let user = document.querySelectorAll(".names");
-
-// user.forEach(function (element) {
-//   element.onclick = changeColor;
+// const bankAval = new NewBank({
+//   sum: 20000,
+//   month: 5,
+//   p: 500,
+//   card: true,
 // });
 
-// ==============================================================================
-// в стрілочної функції немає this, буде відобраджатись об'єкт Window
-// const showList = () => {
-//   console.log(this);
-// };
-// showList();
+// // console.log(bankAval.card);
+// console.log(bankAval.creditAll());
 
-// const list = {
-//   name: ["Ann", "Olga", "Ivan"],
-//   showList: showList,
-// };
-// list.showList();
+//===============================================================================
+// Гетери та Сетери //     get     set
+//===============================================================================
 
-// ==============================================================================
-// вбудовані методи
+// get-тери коли ми зчитуємо інформацію
 
-// // метод bind - прив'язує потрібний контекст, треба викликати, бо він створює
-// // нову змінну і копіює туди вже функцію з новими данними
+// set-тери коли ми змінюємо інформацію
 
-// function hello() {
-//   console.log(this);
+// class User {
+//   constructor(props) {
+//     this.name = props.name;
+//   }
+
+//   firstName = "";
+//   lastName = "";
+//   age = "";
+//   city = "";
+
+//   set name(NewName) {
+//     const nameRow = NewName.split(" ");
+//     this.firstName = nameRow[0];
+//     this.lastName = nameRow[1];
+//   }
+
+//   get name() {
+//     return ` First name: ${this.firstName} last name: ${this.lastName}`;
+//   }
 // }
 
-// user = {
-//   name: "Ivan",
-//   age: 45,
-//   hello: hello,
-//   sayHelloWindow: hello.bind(window),
-//   info: function (city) {
-//     console.log(`Name is ${this.name}`);
-//     console.log(`Age is ${this.age}`);
-//     console.log(`City is ${city}`);
-//   },
-// };
-// // user.hello();
-// // user.sayHelloWindow();
-// // user.info();
+// const vavyl = new User({
+//   name: "Vasyl Karpovych",
+// });
+// const vika = new User({
+//   name: "Victoria Mihailiva",
+// });
+// const vova = new User({
+//   name: "Vova Zelensky",
+// });
 
-// const valera = {
-//   name: "Valera",
-//   age: 24,
-// };
-// const ibragim = {
-//   name: "Ibragim",
-//   age: 33,
-// };
-// user.info.bind(valera)("Kyiv");            !!! метод
-// user.info.bind(ibragim, "Dnipro")();           !!! метод
+// console.log(vavyl);
+// console.log(vika);
+// console.log(vova);
 
-// ==============================================================================
-// метод call - прив'язує потрібний контекст, одразу, не треба викликати,
-// після через кому додаємо безкінечну кількість додаткових аргументів
+//===============================================================================
+// Прототипи //
+//===============================================================================
+// Prototype - це механізм, за допомогою якого об'єкти можуть спадковувати
+// властивості та методи від інших об'єктів
 
-// const userInfo = {
-//   name: "name",
-//   age: 77,
-//   logInfo: function (job) {
-//     console.group(`${name} info: `);
-//     console.log(`Name is : ${this.name}`);
-//     console.log(`Age is : ${this.age}`);
-//     console.log(`Job is : ${job}`);
-//     console.groupEnd();
-//   },
+// const a = {
+//   x: 1,
+//   y: 2,
 // };
 
-// const vano = {
-//   name: "Ivan",
-//   age: 44,
+// const b = Object.create(a);
+
+// console.log(b);
+// console.log(b.x);
+// console.log(b.y);
+// console.log(a);
+
+//===============================================================================
+// трохи практики
+// у нас є магазин, там є менеджери. У кожного менеджера є своя знижка.
+// Ця знижка росте кожне місяць на 1%
+
+// const Manager = function (name, sales) {
+//   this.name = name;
+//   this.sales = sales;
+
+//   //   this.sale = function () {
+//   //     this.sales += 1;
+//   //   };
 // };
 
-// userInfo.logInfo.call(vano, "developer"); // !!! метод
+// const ann = new Manager("Ann", 5);
+// const nikita = new Manager("Nikita", 10);
 
-// ==============================================================================
-// метод apply - прив'язує потрібний контекст, після через кому два аргументи,
-// де перший - це об'єкт, а другий масив додаткових аргументів
-
-// const showUserInfo = {
-//   name: name,
-//   age: 83,
-//   logInfo: function (job, city) {
-//     console.group(`${this.name} info:`);
-//     console.log(`Name is : ${this.name}`);
-//     console.log(`Age is : ${this.age}`);
-//     console.log(`Job is : ${job}`);
-//     console.log(`City is : ${city}`);
-//     console.groupEnd();
-//   },
+// Manager.prototype.sale = function () {
+//   this.sales += 1;
 // };
 
-// const Ivan = {
-//   name: "Ivan",
-//   age: 44,
-// };
+// console.log(ann);
+// ann.sale();
+// console.log(ann);
 
-// showUserInfo.logInfo.apply(Ivan, ["One", "Two"]);
+// console.dir(Manager);
 
-// ==============================================================================
-// практичні задачки
+//===============================================================================
+// приватні і захищені методи в класах
+// _test - те що починається з нижнього підкреслення, це поля що заборонено
+// змінювати, це домовленніть між розробниками, мовою не підтримується
+// #test - те що починається з # це приватні поля і вони підтримуються у JS
 
-// // зробити програму, котра буде вітати людину в якомусь готелі і вказувати
-// // кількість його зірок
+// class CoffeMachine {
+//   _water = 0;
+//   #waterLimit = 500;
 
-// const massage = function (name, stars) {
-//   console.log(`Hello ${name}, Welcome to ${this.hotel}, stars ${stars}*`);
-// };
+//   constructor(power) {
+//     this.power = power;
+//   }
 
-// const bukovel = { hotel: "Buka" };
-// const dnipro = { hotel: "Dnipro" };
-// const goodzone = { hotel: "Goodzone" };
+//   set waterAmount(value) {
+//     if (value < 0) {
+//       value = 0;
+//     }
+//     this._water = value;
+//   }
+// }
 
-// massage.call(bukovel, "Miha", 5); // метод call
-// massage.call(dnipro, "Ksu", 3); // метод call
-// massage.call(goodzone, "Lerka", 4); // метод call
+// let coffeMachine1 = new CoffeMachine(100);
 
-// massage.apply(goodzone, ["Valentin", 4]); // метод apply
+// console.log(coffeMachine1);
 
-// massage.bind(dnipro, "Yan", 3)(); // метод bind
+// coffeMachine1.waterAmount = 20;
+// console.log(coffeMachine1);
 
-// ==============================================================================
-// зробимо кілька задачек по натисканню інтерфейсу, зробимо кілька кнопок,
-// по натисканню на які буде показуватисб що там у нас в корзині
-
-// const cart = {
-//   showItems() {
-//     console.log(`В корзині: `, this.items);
-//   },
-// };
-
-// const woman = {
-//   items: ["Сукня, туфлі"],
-// };
-// const man = {
-//   items: ["Піджак, носки"],
-// };
-// const kids = {
-//   items: ["Іграшка, щоденник"],
-// };
-
-// document
-//   .querySelector(".woman")
-//   .addEventListener("click", cart.showItems.bind(woman));
-// document
-//   .querySelector(".man")
-//   .addEventListener("click", cart.showItems.bind(man));
-// document
-//   .querySelector(".kids")
-//   .addEventListener("click", cart.showItems.bind(kids));
-
-// ==============================================================================
-// зробимо програму котра буде виводити інформацію про автомобіль
-
-const infoCar = {
-  name: "BMW",
-  model: "X5",
-  color: "grey",
-  showInfo: function () {
-    console.log(
-      "Car: " + this.name + ", model: " + this.model + ", color: " + this.color
-    );
-  },
-};
-
-const car2 = {
-  name: "Opel",
-  model: "Omega",
-  color: "blue",
-};
-
-infoCar.showInfo();
-infoCar.showInfo.bind(car2)(); // bind
-infoCar.showInfo.call(car2); // call
-infoCar.showInfo.apply(car2); // apply
+// coffeMachine1.waterAmount = -20;
+// console.log(coffeMachine1);
