@@ -311,46 +311,79 @@
 // shop("jrange", 89, 3.4);
 
 //===========================================================================
-// 17 // Створити телефонну книгу
-// - створити початковий клас Abonent, де зберігатимуться ім*я і номер
-// - створити set який прийматиме телефон і номер
-// - створити get який виводитиме данні про абонента
-// - створити три різних юзери
-// - вивести данні
+// // 17 // Створити телефонну книгу
+// // - створити початковий клас Abonent, де зберігатимуться ім*я і номер
+// // - створити set який прийматиме телефон і номер
+// // - створити get який виводитиме данні про абонента
+// // - створити три різних юзери
+// // - вивести данні
 
-class Abonent {
-  constructor(userPhone) {
-    this.longName = userPhone.longName;
-  }
+// class Abonent {
+//   constructor(userPhone) {
+//     this.longName = userPhone.longName;
+//   }
 
-  name = "";
-  number = "";
+//   name = "";
+//   number = "";
 
-  set longName(namePhone) {
-    const arrUser = namePhone.split(", ");
-    this.name = arrUser[0];
-    this.number = arrUser[1];
-  }
+//   set longName(namePhone) {
+//     const arrUser = namePhone.split(", ");
+//     this.name = arrUser[0];
+//     this.number = arrUser[1];
+//   }
 
-  get longName() {
-    return `Person: ${this.name}, nomber: ${this.number}`;
-  }
-}
+//   get longName() {
+//     return `Person: ${this.name}, nomber: ${this.number}`;
+//   }
+// }
 
-const ivan = new Abonent({
-  longName: "Ivan, +380937777777",
-});
-const pedro = new Abonent({
-  longName: "Pedro, +38097777777",
-});
-const djazefina = new Abonent({
-  longName: "Djazefina, +380677777777",
-});
+// const ivan = new Abonent({
+//   longName: "Ivan, +380937777777",
+// });
+// const pedro = new Abonent({
+//   longName: "Pedro, +38097777777",
+// });
+// const djazefina = new Abonent({
+//   longName: "Djazefina, +380677777777",
+// });
 
-console.log(ivan.longName);
-console.log(pedro.longName);
-console.log(djazefina.longName);
+// console.log(ivan.longName);
+// console.log(pedro.longName);
+// console.log(djazefina.longName);
 
 // ==========================================================================
+// 18 // Створіть функцію-конструктор Calculator, який створює об’єкти з трьома
+// методами:
+// read() запитує два значення за допомогою prompt і запам’ятовує їх у
+// властивостях об’єкта.
+// sum() повертає суму цих властивостей.
+// mul() повертає результат множення даних властивостей.
 
 //===========================================================================
+
+// function Calculator(number1, number2) {
+//   this.number1 = number1;
+//   this.number2 = number2;
+
+//   Calculator.prototype.read = function () {
+//     this.number1 = +prompt("Введіть перше число");
+//     this.number2 = +prompt("Введіть друге число");
+//   };
+
+//   Calculator.prototype.sum = function () {
+//     return this.number1 + this.number2;
+//   };
+
+//   Calculator.prototype.mul = function () {
+//     return this.number1 * this.number2;
+//   };
+// }
+
+// const result1 = new Calculator();
+// result1.read();
+// console.log(result1);
+// console.log(result1.sum());
+// console.log(result1.mul());
+
+// ==========================================================================
+// 19 //
