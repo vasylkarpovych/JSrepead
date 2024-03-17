@@ -1,122 +1,92 @@
 //===============================================================================
-// Наслідування класів, приклад на кружочках
+// DOM Document Object Model
 // ==============================================================================
 
-// class CircleBox {
-//   constructor(selector) {
-//     this.$elemet = document.querySelector(selector);
-//   }
+// let element = document.getElementsByClassName("element");
 
-//   show() {
-//     this.$elemet.style.display = "block";
-//   }
+// element[0].style.background = "green";
 
-//   hide() {
-//     this.$elemet.style.display = "none";
-//   }
+// let elementsUl = document.querySelectorAll("ul>li:last-child");
+
+// for (elem of elementsUl) {
+//   console.log(elem);
 // }
 
-// class CircleItem extends CircleBox {
-//   constructor(options) {
-//     super(options.selector);
-//     this.$elemet.style.width = options.size + "px";
-//     this.$elemet.style.height = options.size + "px";
-//     this.$elemet.style.borderRadius = "50%";
-//     this.$elemet.style.background = options.color;
-//   }
-// }
+// let elenetm = document.querySelector("li");
+// console.log(elenetm);
 
-// const circleRed = new CircleItem({
-//   selector: ".circleRed",
-//   color: "red",
-//   size: 50,
-// });
-// const circleGreen = new CircleItem({
-//   selector: ".circleGreen",
-//   color: "green",
-//   size: 80,
-// });
-// const circleBluee = new CircleItem({
-//   selector: ".circleBlue",
-//   color: "blue",
-//   size: 30,
-// });
+// let elements = document.getElementsByTagName("div");
+// console.log(elements);
 
-// circleRed.hide();
-// circleRed.show();
+// let textHidden = document.getElementsByClassName("text-hidden")[0];
 
-//===============================================================================
-// Записуємо метод в prototype
-// ==============================================================================
+// textHidden.hidden = true; // ховає текст
 
-// Записуємо метод в прототайт, щоб він там був за замовчуванням
-// і ми їм могли користуватись
+// let message = document.getElementById("message");
+// console.log(message.value); // отримуємо той текст, що в середені документу
 
-// function Car(name, color) {
-//   this.name = name;
-//   this.color = color;
-// }
+// let text = document.querySelector(".text-message");
+// console.log(text); // отримуємо просто елемент p
+// console.log(text.textContent); // отримуємо, текст, що в параграфі
 
-// Car.prototype.massege = function () {
-//   console.log(`${this.name} is ${this.color}`);
-// };
+// let text = document.querySelector(".text-message");
+// text.textContent = "Hello Vasek!";
+// console.log(text.textContent);
 
-// Car.prototype.start = function () {
-//   console.log(`${this.name} is start!!!`);
-// };
+// let btn = document.querySelector(".button");
+// btn.style.backgroundColor = "red";
+// btn.style.width = 250 + "px";
+// btn.style.height = 80 + "px";
 
-// const tesla = new Car("Tesla", "white");
-// const opel = new Car("Opel", "green");
+//     <p id="p-text" class="text red big"></p>
 
-//===============================================================================
-// Міксини
-// ==============================================================================
+// let text = document.querySelector("#p-text");
 
-// ==============================================================================
-// зробимо якийсь міксинчик
+// console.log(text.classList);
+// console.log(text.classList.contains("red"));
+// text.classList.remove("red");
+// console.log(text.classList);
+// console.log(text.classList.contains("red"));
+// text.classList.add("new-class");
+// console.log(text.classList);
 
-// let message = {
-//   massegeHello() {
-//     console.log(`Hello, ${this.name}`);
-//   },
+// let img = document.querySelector(".image");
+// console.log(img.hasAttribute("src"));
+// console.log(img.getAttribute("src"));
+// img.remove();
 
-//   massegeGoodbye() {
-//     console.log(`Bye,  ${this.name}`);
-//   },
-// };
+// const item = document.createElement("a");
+// item.href = "#";
+// item.classList.add("btn");
+// item.textContent = "3";
 
-// class User {
-//   constructor(name) {
-//     this.name = name;
-//   }
-// }
+// const nav = document.querySelector(".nav");
+// nav.appendChild(item);
 
-// Object.assign(User.prototype, message);
+// const heading = document.createElement("h2");
+// heading.textContent = "Heading";
+// const container = document.querySelector(".container");
+// container.insertBefore(heading, nav);
 
-// const ivan = new User("Ivan");
-// ivan.massegeHello();
+// // nav.removeChild(item); // старійший метод
+// item.remove(); // новий, більш зручний, але не всюди підтримується
 
-//===============================================================================
-// Підтримка, щоб сайт був кросплатформенним
-// ==============================================================================
+// const text = document.querySelector(".text");
+// const parent = document.querySelector(".parent");
 
-// ==============================================================================
-// Існують два інструменти, це транспілятори, або полефіли
+// const clone = text.cloneNode(true);
 
-// // ?? - війщов в JS 2020
-// // нова специфікація:
-// height = height ?? 100;
-// // на старій специфікації це би виглядало так:
-// height = height !== undefined && height !== mull ? height : 100;
+// parent.appendChild(clone);
 
-// // один із найвідоміших транспіляторів - це Babel
-// // поліфіли
+// const divContainer = document.querySelector(".container");
 
-// if (Math.trunc) {
-//   // якщо такої функції немає
-//   // тоді ми ручками прописуємо що воно повинно зробити
-// }
+// const text = `<p>I am div</p>`;
 
-//===============================================================================
-// Коментарі в коді
-// ==============================================================================
+// divContainer.innerHTML += text;
+
+// const list = document.querySelector(".list");
+
+// list.insertAdjacentHTML("beforebegin", "<p>beforebegin</p>");
+// list.insertAdjacentHTML("afterbegin", "<li>afterbegin</li>");
+// list.insertAdjacentHTML("beforeend", "<li>beforeend</li>");
+// list.insertAdjacentHTML("afterend", "<p>afterend</p>");
