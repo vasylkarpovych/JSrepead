@@ -90,3 +90,138 @@
 // list.insertAdjacentHTML("afterbegin", "<li>afterbegin</li>");
 // list.insertAdjacentHTML("beforeend", "<li>beforeend</li>");
 // list.insertAdjacentHTML("afterend", "<p>afterend</p>");
+
+// const btn1 = document.querySelector(".btn-1");
+// const btn2 = document.querySelector(".btn-2");
+// const btn3 = document.querySelector(".btn-3");
+// const btn4 = document.querySelector(".btn-4");
+// const btn5 = document.querySelector(".btn-5");
+// const btn6 = document.querySelector(".btn-6");
+
+// btn1.addEventListener("click", () => console.log("event = click")); // ліва кнопка миші
+
+// btn2.addEventListener("contextmenu", () => console.log("event = contextmenu")); // права кнопка миші
+
+// btn3.addEventListener("mouseover", () => console.log("mouseover")); // курсор навівся на кнопку
+// btn3.addEventListener("mouseout", () => console.log("mouseout")); // курсор покинув кнопку
+
+// btn4.addEventListener("mousedown", () => console.log("mousedown")); // натиснули на кнопку
+// btn4.addEventListener("mouseup", () => console.log("mouseup")); // відпустили натиск на кнопку
+
+// btn5.addEventListener("mousemove", () => console.log("mousemove")); // натиснули на кнопку
+
+// btn6.addEventListener("keyup", () => console.log("keyup"));
+// btn6.addEventListener("keydown", () => console.log("keydown"));
+
+// const addButton = document.querySelector(".btn-add");
+// const removeButton = document.querySelector(".btn-remove");
+// const clickButton = document.querySelector(".btn-click");
+
+// const handleClick = () => {
+//   console.log("Hello, I am handleClick");
+// };
+
+// addButton.addEventListener("click", () => {
+//   clickButton.removeAttribute("disabled");
+//   clickButton.addEventListener("click", handleClick);
+// });
+// removeButton.addEventListener("click", () => {
+//   //   clickButton.setAttribute("disabled", true); // зробити кнопку не активною
+//   clickButton.removeEventListener("click", handleClick);
+// });
+
+// const clickBtn = document.querySelector(".buttonItem");
+
+// const infoClick = (event) => {
+//   console.log("event", event.target);
+// };
+
+// clickBtn.addEventListener("click", infoClick);
+
+// // робота с формами, цікаво-корисно
+// const form = document.querySelector(".form");
+// const logonInput = form.querySelector('input[type="text"]');
+// const passInput = form.querySelector('input[type="password"]');
+
+// form.addEventListener("submit", handleSubmit);
+
+// function handleSubmit(event) {
+//   event.preventDefault();
+//   const login = logonInput;
+//   const password = passInput;
+
+//   console.log(`Login: ${login.value}, password: ${password.value}`);
+//   form.reset();
+// }
+
+const parent = document.querySelector(".parent");
+const child = document.querySelector(".child");
+const item = document.querySelector(".item");
+
+// parent.addEventListener("click", () => console.log("Click parent"));
+// child.addEventListener("click", () => console.log("Click child"));
+// item.addEventListener("click", () => console.log("Click item"));
+
+// const handleClick = (event) => {
+//   console.log("event: ", event.target);
+// };
+
+// parent.addEventListener("click", handleClick);
+
+// const itemClick = (event) => {
+//   console.log("itemClick stop");
+//   event.stopPropagation();
+// };
+// const childClick = (event) => {
+//   console.log("childClick stop");
+//   event.stopPropagation();
+// };
+// const parentClick = (event) => {
+//   console.log("parentClick stop");
+//   event.stopPropagation();
+// };
+
+// parent.addEventListener("click", parentClick);
+// child.addEventListener("click", childClick);
+// item.addEventListener("click", itemClick);
+
+// const nav = document.querySelector(".nav");
+
+// nav.addEventListener("click", handleClick);
+
+// function handleClick(event) {
+//   const checkClass = nav.querySelector("li.active");
+
+//   //   if (checkClass) {
+//   //     event.target.classList.remove("active");
+//   //   } else {
+//   //     event.target.classList.add("active");
+//   //   }
+
+//   checkClass
+//     ? event.target.classList.remove("active")
+//     : event.target.classList.add("active");
+// }
+
+// // дорозібратись, цікава тема
+// const ball = document.querySelector(".ball");
+
+// ball.onmousedown = function (event) {
+//   function move(pageX, pageY) {
+//     ball.style.left = pageX - ball.offsetWidth / 2 + "px";
+//     ball.style.top = pageY - ball.offsetWidth / 2 + "px";
+//   }
+
+//   move(event.pageX, event.pageY);
+
+//   function onMouseMove(event) {
+//     move(event.pageX, event.pageY);
+//   }
+
+//   document.addEventListener("mousemove", onMouseMove);
+
+//   // коли шишку відпускаємо, то мачик залишається на місці
+//   ball.onmouseup = function () {
+//     document.removeEventListener("mousemove", onMouseMove);
+//   };
+// };

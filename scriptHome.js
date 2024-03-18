@@ -401,3 +401,59 @@
 
 // console.log(attributeWidget);
 // console.log(textWidget);
+
+// // ==========================================================================
+// // 20 // Напишіть такий JavaScript, щоб після натискання на кнопку button, елемент
+// // <div id="text"> зникав
+
+// const text = document.querySelector("#text");
+// const btnHidden = document.querySelector(".button-hidden");
+// const btnReturn = document.querySelector(".button-return");
+
+// btnHidden.addEventListener("click", () => {
+//   text.style.visibility = "hidden";
+// });
+
+// btnReturn.addEventListener("click", () => {
+//   text.style.visibility = "visible";
+// });
+
+// // ==========================================================================
+// // 21 // Напишіть такий код, щоб після натискання на кнопку, вона зникала.
+
+// const btnHidden = document.querySelector(".button-hidden");
+// const btnReturn = document.querySelector(".button-return");
+
+// btnHidden.addEventListener("click", () => (btnHidden.style.display = "none"));
+// btnReturn.addEventListener("click", () => (btnHidden.style.display = "block"));
+
+// ==========================================================================
+// 22 // Створіть дерево, яке показує/приховує дочірні вузли при кліці
+// ДУЖЕ ЦФКАВА ЗАДАЧА, ТРЕБА ДОРОБИТИ, ЩОБ ВІРНО ПОКАЗУВАВСЯ ВМІСТ ЕЛЕМЕНТУ
+
+//
+const wrap = document.querySelector(".wrapper");
+
+// const div1 = document.querySelector(".div1");
+// const div2 = document.querySelector(".div2");
+// const div3 = document.querySelector(".div3");
+// const div4 = document.querySelector(".div4");
+
+const handleClick = (event) => {
+  let clickedItem = event.target;
+  // перевіряємо, елемент, на котрому відполась подія, є дочернім елементом .wrapper
+  if (wrap.contains(clickedItem) && clickedItem !== wrap) {
+    // збкрігаємо вміст елементу
+    const itemContent = clickedItem.textContent;
+
+    // видаляємо всіх дочерніх елементів у елемента, де відбулася подія
+    while (clickedItem.firstChild) {
+      clickedItem.removeChild(clickedItem.firstChild);
+    }
+
+    // відновлюємо вміст елементу, де відбулась подія
+    clickedItem.textContent = itemContent;
+  }
+};
+
+wrap.addEventListener("click", handleClick);
