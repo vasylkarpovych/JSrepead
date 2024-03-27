@@ -1,227 +1,405 @@
 //===============================================================================
-// DOM Document Object Model
+// Синхронний та асинхронний JS
 // ==============================================================================
 
-// let element = document.getElementsByClassName("element");
+// console.log("1");
+// console.log("2");
+// setTimeout(() => (console.log("3")), 0) // буде відображатись після синхронного коду
+// console.log("4");
+// console.log("5");
 
-// element[0].style.background = "green";
-
-// let elementsUl = document.querySelectorAll("ul>li:last-child");
-
-// for (elem of elementsUl) {
-//   console.log(elem);
-// }
-
-// let elenetm = document.querySelector("li");
-// console.log(elenetm);
-
-// let elements = document.getElementsByTagName("div");
-// console.log(elements);
-
-// let textHidden = document.getElementsByClassName("text-hidden")[0];
-
-// textHidden.hidden = true; // ховає текст
-
-// let message = document.getElementById("message");
-// console.log(message.value); // отримуємо той текст, що в середені документу
-
-// let text = document.querySelector(".text-message");
-// console.log(text); // отримуємо просто елемент p
-// console.log(text.textContent); // отримуємо, текст, що в параграфі
-
-// let text = document.querySelector(".text-message");
-// text.textContent = "Hello Vasek!";
-// console.log(text.textContent);
-
-// let btn = document.querySelector(".button");
-// btn.style.backgroundColor = "red";
-// btn.style.width = 250 + "px";
-// btn.style.height = 80 + "px";
-
-//     <p id="p-text" class="text red big"></p>
-
-// let text = document.querySelector("#p-text");
-
-// console.log(text.classList);
-// console.log(text.classList.contains("red"));
-// text.classList.remove("red");
-// console.log(text.classList);
-// console.log(text.classList.contains("red"));
-// text.classList.add("new-class");
-// console.log(text.classList);
-
-// let img = document.querySelector(".image");
-// console.log(img.hasAttribute("src"));
-// console.log(img.getAttribute("src"));
-// img.remove();
-
-// const item = document.createElement("a");
-// item.href = "#";
-// item.classList.add("btn");
-// item.textContent = "3";
-
-// const nav = document.querySelector(".nav");
-// nav.appendChild(item);
-
-// const heading = document.createElement("h2");
-// heading.textContent = "Heading";
-// const container = document.querySelector(".container");
-// container.insertBefore(heading, nav);
-
-// // nav.removeChild(item); // старійший метод
-// item.remove(); // новий, більш зручний, але не всюди підтримується
-
-// const text = document.querySelector(".text");
-// const parent = document.querySelector(".parent");
-
-// const clone = text.cloneNode(true);
-
-// parent.appendChild(clone);
-
-// const divContainer = document.querySelector(".container");
-
-// const text = `<p>I am div</p>`;
-
-// divContainer.innerHTML += text;
-
-// const list = document.querySelector(".list");
-
-// list.insertAdjacentHTML("beforebegin", "<p>beforebegin</p>");
-// list.insertAdjacentHTML("afterbegin", "<li>afterbegin</li>");
-// list.insertAdjacentHTML("beforeend", "<li>beforeend</li>");
-// list.insertAdjacentHTML("afterend", "<p>afterend</p>");
-
-// const btn1 = document.querySelector(".btn-1");
-// const btn2 = document.querySelector(".btn-2");
-// const btn3 = document.querySelector(".btn-3");
-// const btn4 = document.querySelector(".btn-4");
-// const btn5 = document.querySelector(".btn-5");
-// const btn6 = document.querySelector(".btn-6");
-
-// btn1.addEventListener("click", () => console.log("event = click")); // ліва кнопка миші
-
-// btn2.addEventListener("contextmenu", () => console.log("event = contextmenu")); // права кнопка миші
-
-// btn3.addEventListener("mouseover", () => console.log("mouseover")); // курсор навівся на кнопку
-// btn3.addEventListener("mouseout", () => console.log("mouseout")); // курсор покинув кнопку
-
-// btn4.addEventListener("mousedown", () => console.log("mousedown")); // натиснули на кнопку
-// btn4.addEventListener("mouseup", () => console.log("mouseup")); // відпустили натиск на кнопку
-
-// btn5.addEventListener("mousemove", () => console.log("mousemove")); // натиснули на кнопку
-
-// btn6.addEventListener("keyup", () => console.log("keyup"));
-// btn6.addEventListener("keydown", () => console.log("keydown"));
-
-// const addButton = document.querySelector(".btn-add");
-// const removeButton = document.querySelector(".btn-remove");
-// const clickButton = document.querySelector(".btn-click");
-
-// const handleClick = () => {
-//   console.log("Hello, I am handleClick");
+// const hello = () => {
+//   console.log("Hello!");
 // };
 
-// addButton.addEventListener("click", () => {
-//   clickButton.removeAttribute("disabled");
-//   clickButton.addEventListener("click", handleClick);
+// const timeout = setTimeout(hello, 7000);
+// // clearTimeout(timeout); // clearTimeout - синхронна, тому буде викликана першою і сет таймаут не виконається
+
+// const intervsl = setInterval(hello, 5000);
+
+// const btnStart = document.querySelector(".start");
+// const btnStop = document.querySelector(".stop");
+
+// let time = null;
+
+// btnStart.addEventListener("click", () => {
+//   time = setInterval(() => {
+//     console.log("start timer");
+//   }, 1000);
 // });
-// removeButton.addEventListener("click", () => {
-//   //   clickButton.setAttribute("disabled", true); // зробити кнопку не активною
-//   clickButton.removeEventListener("click", handleClick);
+// btnStop.addEventListener("click", () => {
+//   console.log("timer stop");
+//   clearInterval(time);
 // });
 
-// const clickBtn = document.querySelector(".buttonItem");
-
-// const infoClick = (event) => {
-//   console.log("event", event.target);
+// const a = {
+//   classic() {
+//     setTimeout(function () {
+//       console.log(`${this}, classic function in object`);
+//     }, 1000);
+//   },
+//   arrow() {
+//     setTimeout(() => {
+//       console.log(`${this}, arrow function in object`);
+//     }, 1000);
+//   },
 // };
 
-// clickBtn.addEventListener("click", infoClick);
+// a.classic();
+// a.arrow();
 
-// // робота с формами, цікаво-корисно
-// const form = document.querySelector(".form");
-// const logonInput = form.querySelector('input[type="text"]');
-// const passInput = form.querySelector('input[type="password"]');
+// const data = new Date(1989, 5, 18, 15, 25, 45); // обов'язкові (рік, місяць, день), година, хвилина, секунда, мілісекунда
+// console.log(data);
 
-// form.addEventListener("submit", handleSubmit);
+// const unixDate = new Date(1710970300228); // початок по Unix вважається 00:00 годин 1-го січня 1970 року
+// console.log(unixDate);
 
-// function handleSubmit(event) {
-//   event.preventDefault();
-//   const login = logonInput;
-//   const password = passInput;
+// const newUnixDate = Date.now(); // показує кулькість мілісекунд від початку і до моменту виклика функції
+// console.log(newUnixDate);
 
-//   console.log(`Login: ${login.value}, password: ${password.value}`);
-//   form.reset();
+// const date = new Date();
+
+// console.log(date.getDate());
+// console.log(date.getMonth());
+// console.log(date.getFullYear());
+// console.log(date.getTime());
+
+// const date = new Date();
+
+// const options = {
+//   weekday: "short",
+//   year: "numeric",
+//   month: "long",
+//   day: "numeric",
+//   // hour: "2-digit",
+//   // minute: "2-digit",
+// };
+
+// const ukr = date.toLocaleString("Uk-uk", options);
+// console.log(ukr);
+
+//===============================================================================
+// Promise
+// ==============================================================================
+
+// let promise = new Promise(function (resolve, reject) {
+//   setTimeout(() => resolve("resolve"), 1000);
+//   setTimeout(() => reject("reject"), 1000);
+// });
+
+// promise.then(
+//   (resolve) => console.log(resolve),
+//   (reject) => console.log(reject)
+// );
+
+// promise.catch(alert);
+
+// promise.finally(); // не дужєе поки поняв
+
+//===============================================================================
+// Давайте зробимо функцію, що буде обробляти якесь завантаження
+// ==============================================================================
+
+// function loader(src) {
+//   return new Promise(function (resolve, reject) {
+//     let script = document.createElement("script");
+//     script.src = src;
+
+//     script.onload = () => resolve(script);
+//     script.onerror = () => reject(new Error(`Err ${script}`));
+
+//     document.head.append(script);
+//   });
 // }
 
-const parent = document.querySelector(".parent");
-const child = document.querySelector(".child");
-const item = document.querySelector(".item");
+// let prom = loader(
+//   "https://gist.githubusercontent.com/vasylkarpovych/cbf15256444eb88654dc32e7fad69dc9/raw/b230eac3aed9787745033a3edcdcf2a74a3fa872/vasek.js"
+// );
+// prom.then((script) => console.log(`Download ${script}`));
 
-// parent.addEventListener("click", () => console.log("Click parent"));
-// child.addEventListener("click", () => console.log("Click child"));
-// item.addEventListener("click", () => console.log("Click item"));
+// prom.catch((error) => console.log(`Error ${error.message}`));
 
-// const handleClick = (event) => {
-//   console.log("event: ", event.target);
-// };
+// prom.finally(console.log("Finally"));
 
-// parent.addEventListener("click", handleClick);
+//===============================================================================
+// друга задачка
+//==============================================================================
 
-// const itemClick = (event) => {
-//   console.log("itemClick stop");
-//   event.stopPropagation();
-// };
-// const childClick = (event) => {
-//   console.log("childClick stop");
-//   event.stopPropagation();
-// };
-// const parentClick = (event) => {
-//   console.log("parentClick stop");
-//   event.stopPropagation();
-// };
+// new Promise(function (resolve, reject) {
+//   setTimeout(() => resolve(2), 1000);
+// })
+//   .then(function (result) {
+//     console.log(result);
+//     return new Promise((resolve, reject) => {
+//       setTimeout(() => resolve(result + 5), 1000);
+//     });
+//   })
+//   .then(function (result) {
+//     console.log(result);
+//     return new Promise((resolve, reject) => {
+//       setTimeout(() => resolve(result + 5), 1000);
+//     });
+//   })
+//   .then(function (result) {
+//     console.log(result);
+//     return new Promise((resolve, reject) => {
+//       setTimeout(() => resolve(result + 5), 1000);
+//     });
+//   })
+//   .then(function (result) {
+//     console.log(result);
+//   });
 
-// parent.addEventListener("click", parentClick);
-// child.addEventListener("click", childClick);
-// item.addEventListener("click", itemClick);
+// ================================================================
 
-// const nav = document.querySelector(".nav");
+// let a = 7;
 
-// nav.addEventListener("click", handleClick);
+// console.log(a);
 
-// function handleClick(event) {
-//   const checkClass = nav.querySelector("li.active");
+// let b = new Promise(function (resolve, reject) {
+//   setTimeout(() => {
+//     resolve((a = 99));
+//   }, 2000);
+// });
 
-//   //   if (checkClass) {
-//   //     event.target.classList.remove("active");
-//   //   } else {
-//   //     event.target.classList.add("active");
-//   //   }
+// b.then(function () {
+//   console.log(a);
+// });
 
-//   checkClass
-//     ? event.target.classList.remove("active")
-//     : event.target.classList.add("active");
+// ===========================================================================
+// callback
+// ===========================================================================
+
+// function myFunc(callback) {
+//   const a = [4, 5, 6];
+//   let element = document.querySelector(".out-1");
+//   callback(element, a);
+//   //   out(element, a);
 // }
 
-// // дорозібратись, цікава тема
-// const ball = document.querySelector(".ball");
+// function out(elem, arr) {
+//   elem.innerHTML = arr.join("<br>");
+// }
+// function out2(elem, arr) {
+//   elem.innerHTML = arr.join("---");
+// }
 
-// ball.onmousedown = function (event) {
-//   function move(pageX, pageY) {
-//     ball.style.left = pageX - ball.offsetWidth / 2 + "px";
-//     ball.style.top = pageY - ball.offsetWidth / 2 + "px";
-//   }
+// myFunc(out);
+// myFunc(out2);
 
-//   move(event.pageX, event.pageY);
+// запит про котят
+// https://cat-fact.herokuapp.com/facts
 
-//   function onMouseMove(event) {
-//     move(event.pageX, event.pageY);
-//   }
+// якщо жорстко визивати, все не гибко
+// fetch("https://cat-fact.herokuapp.com/facts")
+//   .then((response) => {
+//     return response.json();
+//   })
+//   .then((data) => {
+//     // console.log(data);
+//     data.forEach((item) => console.log(item.text));
+//   });
+// якщо визивати за допомогою коллбеків
 
-//   document.addEventListener("mousemove", onMouseMove);
+// function getCats(callback2) {
+//   fetch("https://cat-fact.herokuapp.com/facts")
+//     .then((response) => {
+//       return response.json();
+//     })
+//     .then((data) => {
+//       callback2(data);
+//       //   // console.log(data);
+//       //   data.forEach((item) => console.log(item.text));
+//     });
+// }
 
-//   // коли шишку відпускаємо, то мачик залишається на місці
-//   ball.onmouseup = function () {
-//     document.removeEventListener("mousemove", onMouseMove);
-//   };
-// };
+// function showCats(d) {
+//   d.forEach((item) => console.log(item.text));
+// }
+
+// function showCats2(d) {
+//   d.forEach(
+//     (item) => (document.querySelector(".out-2").innerHTML += item.text + "<br>")
+//   );
+// }
+
+// getCats(showCats);
+// getCats(showCats2);
+
+// ===========================================================================
+
+// function fetchUserInfo(callback) {
+//   setTimeout(() => {
+//     // fetch
+//     const data = { id: 1, name: "Alex" };
+//     callback(data);
+//   }, 1000);
+// }
+
+// function fetchUserGames(id, callback) {
+//   setTimeout(() => {
+//     // fetch games (id)
+//     const data = ["game1", "game2", "game3"];
+//     callback(data);
+//   }, 1000);
+// }
+
+// function run() {
+//   fetchUserInfo((userInfo) => {
+//     console.log(userInfo);
+//     fetchUserGames(userInfo.id, (userGames) => {
+//       console.log(userGames);
+//     });
+//   });
+// }
+
+// run();
+
+// ===========================================================================
+// перепишемо приклад що вище на промісах
+
+// function fetchUserData() {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       // fetch
+//       const data = { id: 1, name: "Ivan" };
+
+//       resolve(data);
+//       // reject('Error "then-1"');
+//     }, 1000);
+//   });
+// }
+
+// function fetchUserGames(id) {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       // fetch games (id)
+//       const data = ["game1", "game2", "game3"];
+
+//       // resolve(data);
+//       reject('Error "then-2"');
+//     }, 1000);
+//   });
+// }
+
+// function run() {
+//   fetchUserData()
+//     .then((userData) => {
+//       console.log(userData);
+//       return fetchUserGames(userData.id);
+//     })
+//     .then((userGames) => {
+//       console.log(userGames);
+//     })
+//     .catch((message) => {
+//       console.log(message);
+//     });
+// }
+
+// run();
+
+// ===========================================================================
+// попрактикуємось трохи
+// ===========================================================================
+
+// function fetchGames() {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       // fetch
+//       const dataFromServer = "sdkfnjjkngvfjedknbgvjkedbngjkd";
+
+//       // const gameFromServer = [
+//       //   { id: 1, name: "Spider-man" },
+//       //   { id: 2, name: "Mario" },
+//       // ];
+
+//       if (Array.isArray(dataFromServer)) {
+//         resolve(gameFromServer);
+//       } else {
+//         reject("Так це ж я того, помилка я, щось явно не так пішло");
+//       }
+//     }, 2000);
+//   });
+// }
+
+// function renderLoading() {
+//   const body = document.querySelector("body");
+
+//   const loading = document.createElement("div");
+//   loading.id = "loading";
+//   loading.textContent = "Loading...";
+
+//   body.append(loading);
+// }
+
+// function renderGames(games) {
+//   const body = document.querySelector("body");
+
+//   const loading = document.querySelector("#loading");
+//   loading.remove();
+
+//   games.forEach((game) => {
+//     const gameElement = document.createElement("div");
+//     gameElement.innerText = `Game: ${game.name}`;
+//     gameElement.classList = "game-element";
+
+//     body.append(gameElement);
+//   });
+// }
+
+// renderLoading();
+
+// fetchGames()
+//   .then((games) => {
+//     renderGames(games);
+//   })
+//   .catch((message) => {
+//     console.log(message);
+//   });
+
+// ===========================================================================
+// методи промісів, щоб їх виконувати одночасно
+// ===========================================================================
+
+// Promise.all - чекаємо всі проміси, якщо ХОЧ ОДИН с помилкою то пападає в секцію catch, інакше then
+// Promise.allSettled - просто чекаємо виконання всіх промісів (завжни then) не важливо з яким статусом
+// Promise.race - отримуємо перший виконаний проміс (якщо він був з помилкою catch - )
+// Promise.any - отримуємо перший УСПІШНО виконаний проміс
+
+// function fetchVideos() {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       // fetch video
+//       const data = ["video-1", "video-2"];
+//       console.log("Data came 1");
+//       // resolve(data);
+//       reject("Error 1 promise");
+//     }, 1000);
+//   });
+// }
+
+// function fetchShorts() {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       // fetch video
+//       const data = ["shorts-1", "shorts-2"];
+//       console.log("Data came 2");
+//       // resolve(data);
+//       reject("Error 2 promise");
+//     }, 2000);
+//   });
+// }
+
+// function main() {
+//   console.log("Loading...");
+
+//   Promise.any([fetchVideos(), fetchShorts()])
+//     .then((data) => {
+//       console.log("OK", data);
+//     })
+//     .catch((message) => {
+//       console.log("ERROR", message);
+//     });
+// }
+
+// main();

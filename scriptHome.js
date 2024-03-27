@@ -431,29 +431,112 @@
 // 22 // Створіть дерево, яке показує/приховує дочірні вузли при кліці
 // ДУЖЕ ЦФКАВА ЗАДАЧА, ТРЕБА ДОРОБИТИ, ЩОБ ВІРНО ПОКАЗУВАВСЯ ВМІСТ ЕЛЕМЕНТУ
 
-//
-const wrap = document.querySelector(".wrapper");
+// //
+// const wrap = document.querySelector(".wrapper");
 
-// const div1 = document.querySelector(".div1");
-// const div2 = document.querySelector(".div2");
-// const div3 = document.querySelector(".div3");
-// const div4 = document.querySelector(".div4");
+// // const div1 = document.querySelector(".div1");
+// // const div2 = document.querySelector(".div2");
+// // const div3 = document.querySelector(".div3");
+// // const div4 = document.querySelector(".div4");
 
-const handleClick = (event) => {
-  let clickedItem = event.target;
-  // перевіряємо, елемент, на котрому відполась подія, є дочернім елементом .wrapper
-  if (wrap.contains(clickedItem) && clickedItem !== wrap) {
-    // збкрігаємо вміст елементу
-    const itemContent = clickedItem.textContent;
+// const handleClick = (event) => {
+//   let clickedItem = event.target;
+//   // перевіряємо, елемент, на котрому відполась подія, є дочернім елементом .wrapper
+//   if (wrap.contains(clickedItem) && clickedItem !== wrap) {
+//     // збкрігаємо вміст елементу
+//     const itemContent = clickedItem.textContent;
 
-    // видаляємо всіх дочерніх елементів у елемента, де відбулася подія
-    while (clickedItem.firstChild) {
-      clickedItem.removeChild(clickedItem.firstChild);
-    }
+//     // видаляємо всіх дочерніх елементів у елемента, де відбулася подія
+//     while (clickedItem.firstChild) {
+//       clickedItem.removeChild(clickedItem.firstChild);
+//     }
 
-    // відновлюємо вміст елементу, де відбулась подія
-    clickedItem.textContent = itemContent;
-  }
-};
+//     // відновлюємо вміст елементу, де відбулась подія
+//     clickedItem.textContent = itemContent;
+//   }
+// };
 
-wrap.addEventListener("click", handleClick);
+// wrap.addEventListener("click", handleClick);
+
+// // ==========================================================================
+// // 23 // Напишіть функцію printNumbers(from, to) яка виводить число
+// кожну секунду, починаючи від from і закінчуючи to.
+// Зробіть два варіанти рішення.
+// Використовуючи setInterval.
+// Використовуючи вкладений setTimeout
+
+// рішення використовуючи setInterval:
+
+// function printNumbers(from, to) {
+//   function showNumbers() {
+//     if (from !== to + 1) {
+//       console.log(from);
+//       from++;
+//     } else {
+//       clearInterval(showNumbers);
+//     }
+//   }
+
+//   let interval = setInterval(showNumbers, 1000);
+// }
+
+// printNumbers(8, 12);
+
+// // рішення використовуючи використовуючи setInterval тільки трохи оптимізував:
+
+// function printNumbers(from, to) {
+//   function showNumbers() {
+//     from !== to + 1 ? console.log(from++) : clearInterval(showNumbers);
+//   }
+
+//   let interval = setInterval(showNumbers, 1000);
+// }
+
+// printNumbers(7, 10);
+
+// // рішення використовуючи вкладений setTimeout:
+// // вдалось виконати задачу завдяки рекурсії
+
+// function printNumbers(from, to) {
+//   let number = from;
+
+//   function recursion() {
+//     console.log(number);
+
+//     if (number < to) {
+//       number++;
+//       setTimeout(recursion, 1000);
+//     }
+//   }
+//   recursion();
+// }
+// printNumbers(5, 10);
+
+// // // ==========================================================================
+// // // 24 // Вбудована функція setTimeout використовує колбек-функції. Створіть
+// // альтернативу яка базується на промісах.
+// // Функція delay(ms) повинна повертати проміс, який перейде в стан resolved через
+// // ms мілісекунд, так щоб ми могли додати до нього .then:
+// // function delay(ms) {
+// // // ваш код
+// // }delay(3000).then(() => alert('виконалось через 3 секунди'));
+
+// function delay(ms) {
+//   // ваш код
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       resolve();
+//     }, ms);
+//   });
+// }
+
+// delay(3000).then(() => alert("виконалось через 3 секунди"));
+
+// // ==========================================================================
+// // 25 //
+
+// // ==========================================================================
+// // 26 //
+
+// // ==========================================================================
+// // 27 //
